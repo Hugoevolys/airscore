@@ -108,3 +108,181 @@ input[type="number"] {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  @page {
+    margin: 1cm 1.5cm;
+    size: A4;
+  }
+
+  /* Force color printing */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Force Framer Motion animated elements to be visible */
+  [style] {
+    opacity: 1 !important;
+  }
+
+  /* White background, dark text */
+  html, body {
+    background: white !important;
+    color: #111827 !important;
+    min-height: auto !important;
+  }
+
+  /* Glass cards → light gray with visible border */
+  .glass-card {
+    background: #f8fafc !important;
+    border: 1.5px solid #cbd5e1 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* ---- TEXT COLORS ---- */
+
+  /* All white text → dark (catches text-white, text-white/60, text-white/70, etc.) */
+  [class*="text-white"] {
+    color: #1e293b !important;
+    -webkit-text-fill-color: #1e293b !important;
+  }
+
+  /* Lighter white hints (white/30, white/40) → medium gray */
+  [class*="text-white/3"],
+  [class*="text-white/4"] {
+    color: #64748b !important;
+    -webkit-text-fill-color: #64748b !important;
+  }
+
+  /* Keep accent colors with print-friendly darker versions */
+  [class*="text-coral"] {
+    color: #dc2626 !important;
+    -webkit-text-fill-color: #dc2626 !important;
+  }
+
+  [class*="text-green"] {
+    color: #15803d !important;
+    -webkit-text-fill-color: #15803d !important;
+  }
+
+  [class*="text-yellow"] {
+    color: #a16207 !important;
+    -webkit-text-fill-color: #a16207 !important;
+  }
+
+  [class*="text-red"] {
+    color: #b91c1c !important;
+    -webkit-text-fill-color: #b91c1c !important;
+  }
+
+  [class*="text-blue"] {
+    color: #1d4ed8 !important;
+    -webkit-text-fill-color: #1d4ed8 !important;
+  }
+
+  /* Gradient text → solid coral */
+  .gradient-text {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #dc2626 !important;
+    color: #dc2626 !important;
+  }
+
+  /* ---- BACKGROUNDS ---- */
+
+  /* Status backgrounds → pastel versions for print */
+  [class*="bg-green-500"] {
+    background-color: #dcfce7 !important;
+  }
+
+  [class*="bg-yellow-500"] {
+    background-color: #fef9c3 !important;
+  }
+
+  [class*="bg-red-500"] {
+    background-color: #fee2e2 !important;
+  }
+
+  [class*="bg-coral"] {
+    background-color: #fee2e2 !important;
+  }
+
+  [class*="bg-blue-500"] {
+    background-color: #dbeafe !important;
+  }
+
+  /* Semi-transparent white backgrounds → light gray */
+  [class*="bg-white/"],
+  [class*="bg-white\\/"] {
+    background-color: #f1f5f9 !important;
+  }
+
+  /* Score badge gradient */
+  [class*="from-coral"] {
+    background: #fee2e2 !important;
+  }
+
+  /* Coral button */
+  .btn-coral {
+    background: #dc2626 !important;
+  }
+
+  /* ---- BORDERS ---- */
+
+  [class*="border-green"] {
+    border-color: #16a34a !important;
+  }
+
+  [class*="border-yellow"] {
+    border-color: #ca8a04 !important;
+  }
+
+  [class*="border-red"] {
+    border-color: #dc2626 !important;
+  }
+
+  [class*="border-coral"] {
+    border-color: #dc2626 !important;
+  }
+
+  [class*="border-blue"] {
+    border-color: #2563eb !important;
+  }
+
+  [class*="border-white"] {
+    border-color: #e2e8f0 !important;
+  }
+
+  /* ---- SVG SCORE RINGS ---- */
+
+  /* Background track circle (inline stroke rgba white) */
+  svg circle[stroke*="255,255,255"] {
+    stroke: #e2e8f0 !important;
+  }
+
+  /* ---- HIDE NON-PRINTABLE ELEMENTS ---- */
+
+  button {
+    display: none !important;
+  }
+
+  /* Funnel connector line */
+  [class*="bg-white/10"] {
+    background-color: #cbd5e1 !important;
+  }
+
+  /* ---- LAYOUT ---- */
+
+  /* Remove min-height screen constraint */
+  [class*="min-h-screen"] {
+    min-height: auto !important;
+  }
+}
