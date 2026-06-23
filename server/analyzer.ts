@@ -188,7 +188,7 @@ ${scrapedData.markdown.slice(0, 18000)}`;
     // réseau "Premature close" avant la fin de la réponse.
     const stream = client.messages.stream({
       model: 'claude-haiku-4-5-20251001',
-      max_tokens: 4096,
+      max_tokens: 8192,
       messages: [
         {
           role: 'user',
