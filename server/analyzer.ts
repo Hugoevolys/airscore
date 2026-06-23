@@ -183,7 +183,10 @@ CONTENU COMPLET DE LA PAGE (markdown, extrait par scraper — les photos au-del�
 ${scrapedData.markdown.slice(0, 18000)}`;
 
   try {
-    const response = await client.messages.create({
+    // Streaming : garde la connexion active pendant la génération.
+    // Sans ça, les longues réponses (gros JSON) provoquent une coupure
+    // réseau "Premature close" avant la fin de la réponse.
+    const stream = client.messages.stream({
       model: 'claude-sonnet-4-6',
       max_tokens: 4096,
       messages: [
@@ -194,6 +197,8 @@ ${scrapedData.markdown.slice(0, 18000)}`;
       ],
       system: SYSTEM_PROMPT,
     });
+
+    const response = await stream.finalMessage();
 
     const textBlock = response.content.find((block) => block.type === 'text');
     if (!textBlock || textBlock.type !== 'text') {
