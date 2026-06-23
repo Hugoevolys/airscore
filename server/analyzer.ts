@@ -187,7 +187,7 @@ ${scrapedData.markdown.slice(0, 18000)}`;
     // Sans ça, les longues réponses (gros JSON) provoquent une coupure
     // réseau "Premature close" avant la fin de la réponse.
     const stream = client.messages.stream({
-      model: 'claude-sonnet-4-6',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 4096,
       messages: [
         {
